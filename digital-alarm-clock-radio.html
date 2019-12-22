@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #digital-clock {
+            border: 2px solid black;
+            height: 200px;
+            position: relative;
+            width: 400px;
+        }
+        #display {
+            border : 2px solid black;
+            border-radius: 9px;
+            font-size: 40px;
+            height: 55px;
+            line-height: 55px;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            text-align: center;
+            width: 250px;
+        }
+
+        #button {
+            border: 2px solid black;
+            border-radius: 50%;
+            height: 55px;
+            position: absolute;
+            top: 10px;
+            left: 305px;
+            width: 55px;
+        }
+    
+    
+    </style>
+</head>
+<body></body>
+    <div id="digital-clock">
+    <div id="display"></div>
+    <div id="button">Power Off</div>
+    </div>
+    <script>
+        var clockDisplay = document.getElementById("display");
+        var powerButton = document.getElementById("button");
+        
+        function setTime() {
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            var clockTime = `${hours}:${minutes}:${seconds}`;
+            console.log(clockTime);
+            return clockTime;
+            
+        }
+           
+        function powerOn() {
+           var on_Off_SwitchArr = ["Power On", "Power Off"];
+           var num = 0;
+           powerButton.addEventListener("click",function () {
+           num += 1;
+           if(num % 2 === 0) {
+               console.log(num);
+               powerButton.innerHTML = on_Off_SwitchArr[1];
+               clockDisplay.innerHTML = " ";
+           }else if(num % 2 != 0) {
+               console.log(num + "odd Number");
+               powerButton.innerHTML = on_Off_SwitchArr[0]; 
+               powerButton.style.background = "blue";
+               let x = setInterval(function () {
+               let z = clockDisplay.innerHTML = setTime();
+               
+               },1000);
+            }
+           //---------------------------------------------------------------------
+           });//powerButton event listener end of statement   
+        }
+
+
+    //  =======================Main Function=========================
+    setTime()
+    powerOn();
+   
+    
+    </script>
+</body>
+</html>
